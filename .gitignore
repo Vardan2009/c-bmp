@@ -1,0 +1,3 @@
+test.exe
+tests/*
+!tests/0.bmp

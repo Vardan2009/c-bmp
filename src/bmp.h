@@ -1,4 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #pragma pack(push, 1)
+
 typedef struct {
     unsigned char signature[2];
     unsigned int fileSize;
@@ -21,6 +25,13 @@ typedef struct {
     unsigned int colorsImportant;
 } BMPInfoHeader;
 
+typedef struct
+{
+    int x,y;
+    unsigned char r,g,b;
+} Pixel;
+
+
 typedef struct 
 {
     BMPHeader header;
@@ -32,3 +43,5 @@ typedef struct
 
 void writeBMP(const char *filename, BMPImage bmp);
 BMPImage readBMP(const char *filepath);
+Pixel getPixel(BMPImage* img, int x, int y);
+void setPixel(BMPImage * img, int x, int y, Pixel pix);

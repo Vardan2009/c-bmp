@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "bmp.h"
 
 void writeBMP(const char *filename, BMPImage bmp) {
@@ -86,4 +84,36 @@ BMPImage readBMP(const char *filepath)
     bmp.imageData = imageData;
 
     return bmp;
+}
+
+Pixel getPixel(BMPImage* img, int x, int y)
+{
+    int pixel_index = (y * img->infoHeader.width + x) * (img->infoHeader.bitsPerPixel / 8);
+
+    if(pixel_index >= img->infoHeader.width * img->infoHeader.height * (img->infoHeader.bitsPerPixel / 8))
+    {
+        printf("Pixel index out of range");
+        exit(1);
+    }
+
+    unsigned char blue = img->imageData[pixel_index];
+    unsigned char green = img->imageData[pixel_index + 1];
+    unsigned char red = img->imageData[pixel_index + 2];
+
+    Pixel res = {x,y,red,green,blue};
+
+    return res;
+}
+
+void setPixel(BMPImage * img, int x, int y, Pixel pix)
+{
+    int pixel_index = (y * img->infoHeader.width + x) * (img->infoHeader.bitsPerPixel / 8);
+    if(pixel_index >= img->infoHeader.width * img->infoHeader.height * (img->infoHeader.bitsPerPixel / 8))
+    {
+        printf("Pixel index out of range");
+        exit(1);
+    }
+    img->imageData[pixel_index] = pix.r;
+    img->imageData[pixel_index+1] = pix.g;
+    img->imageData[pixel_index+2] = pix.b;
 }

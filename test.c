@@ -12,17 +12,12 @@ int main()
 
     for (int y = 0; y < img.infoHeader.height; y++) {
         for (int x = 0; x < img.infoHeader.width; x++) {
-            int pixel_index = (y * img.infoHeader.width + x) * (img.infoHeader.bitsPerPixel / 8);
-            
-            unsigned char blue = img.imageData[pixel_index];
-            unsigned char green = img.imageData[pixel_index + 1];
-            unsigned char red = img.imageData[pixel_index + 2];
-
-            unsigned char pixavg = (red+green+blue)/3;
-
-            img.imageData[pixel_index] = pixavg;
-            img.imageData[pixel_index + 1] = pixavg;
-            img.imageData[pixel_index + 2] = pixavg;
+            Pixel p = getPixel(&img,x,y);
+            unsigned char pixavg = (p.r+p.g+p.b)/3;
+            p.r = pixavg;
+            p.g = pixavg;
+            p.b = pixavg;
+            setPixel(&img,x,y,p);
         }
     }
 
