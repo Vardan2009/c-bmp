@@ -1,4 +1,4 @@
 # C BMP
-## C Library for reading and writing BMP files
+## C Library for reading, writing and manipulating BMP files
 
-The source is in `/src` and a sample usage at `test.c`
+The source is in `/src` and a sample usage and image filters at `test.c`
