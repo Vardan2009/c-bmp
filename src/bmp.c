@@ -113,7 +113,7 @@ void setPixel(BMPImage * img, int x, int y, Pixel pix)
         printf("Pixel index out of range");
         exit(1);
     }
-    img->imageData[pixel_index] = pix.r;
+    img->imageData[pixel_index + 2] = pix.r;
     img->imageData[pixel_index+1] = pix.g;
-    img->imageData[pixel_index+2] = pix.b;
+    img->imageData[pixel_index] = pix.b;
 }
