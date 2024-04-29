@@ -65,6 +65,7 @@ int main()
     BMPImage img = readBMP("tests/0.bmp");
 
     grayscale(&img);
+    invert(&img);
     vintage(&img);
 
     writeBMP("tests/0out.bmp",img);
