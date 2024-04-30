@@ -34,7 +34,7 @@ void grayscale(BMPImage* img)
     }
 }
 
-// taking image as input and adding brightness to each pixel
+// taking image as input and inverting each pixel
 void invert(BMPImage* img)
 {
     for (int y = 0; y < img->infoHeader.height; y++) {
@@ -49,6 +49,7 @@ void invert(BMPImage* img)
     }
 }
 
+// taking image as input and decreasing blue and green channels on each pixel
 void vintage(BMPImage* img)
 {
     for (int y = 0; y < img->infoHeader.height; y++) {
@@ -64,6 +65,7 @@ void vintage(BMPImage* img)
     }
 }
 
+// taking image as input and adding random noise to each pixel
 void noise(BMPImage* img,int intensity)
 {
     srand(time(NULL)); // random number seed
@@ -89,12 +91,15 @@ void noise(BMPImage* img,int intensity)
 
 int main()
 {
+    // load image from path
     BMPImage img = readBMP("tests/0.bmp");
 
+    // add filters defined above
     noise(&img,100);
     grayscale(&img);
     invert(&img);
     vintage(&img);
 
+    // writing output to a new file
     writeBMP("tests/0out.bmp",img);
 }
