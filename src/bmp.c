@@ -46,12 +46,10 @@ void writeBMP(const char *filename, BMPImage bmp) {
     fclose(file);
 }
 
-BMPImage readBMP(const char *filepath)
-{
+BMPImage readBMP(const char *filepath) {
     FILE* file = fopen(filepath,"rb");
 
-    if(!file)
-    {
+    if(!file) {
         printf("Error opening file\n");
         exit(1);
     }
@@ -86,12 +84,10 @@ BMPImage readBMP(const char *filepath)
     return bmp;
 }
 
-Pixel getPixel(BMPImage* img, int x, int y)
-{
+Pixel getPixel(BMPImage* img, int x, int y) {
     int pixel_index = (y * img->infoHeader.width + x) * (img->infoHeader.bitsPerPixel / 8);
 
-    if(pixel_index >= img->infoHeader.width * img->infoHeader.height * (img->infoHeader.bitsPerPixel / 8))
-    {
+    if(pixel_index >= img->infoHeader.width * img->infoHeader.height * (img->infoHeader.bitsPerPixel / 8)) {
         printf("Pixel index out of range");
         exit(1);
     }
@@ -105,11 +101,9 @@ Pixel getPixel(BMPImage* img, int x, int y)
     return res;
 }
 
-void setPixel(BMPImage * img, int x, int y, Pixel pix)
-{
+void setPixel(BMPImage * img, int x, int y, Pixel pix) {
     int pixel_index = (y * img->infoHeader.width + x) * (img->infoHeader.bitsPerPixel / 8);
-    if(pixel_index >= img->infoHeader.width * img->infoHeader.height * (img->infoHeader.bitsPerPixel / 8))
-    {
+    if(pixel_index >= img->infoHeader.width * img->infoHeader.height * (img->infoHeader.bitsPerPixel / 8)) {
         printf("Pixel index out of range");
         exit(1);
     }
