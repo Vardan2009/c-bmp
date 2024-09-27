@@ -25,15 +25,13 @@ typedef struct {
     unsigned int colorsImportant;
 } BMPInfoHeader;
 
-typedef struct
-{
+typedef struct {
     int x,y;
     unsigned char r,g,b;
 } Pixel;
 
 
-typedef struct 
-{
+typedef struct {
     BMPHeader header;
     BMPInfoHeader infoHeader;
     unsigned char *imageData;
